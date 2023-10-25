@@ -10,7 +10,7 @@ import FoodMenuListRenderer from "./FoodMenuListRenderer.vue";
 const foodMenus = ref(null)
 
 onMounted(async () => {
-    const response = await fetch('http://yemek-api.vercel.app')
+    const response = await fetch('https://yemek-api.vercel.app')
     foodMenus.value = await response.json()
 })
 </script>
