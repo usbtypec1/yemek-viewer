@@ -11,17 +11,22 @@
       <p class="text-xs tg-hint">{{ item.calories_count }} калорий</p>
     </div>
     <div class="text-center">
-      <p class="text-xl font-semibold tg-primary-text">Всего калорий: {{ computeTotalCaloriesCount(items) }}</p>
+      <p class="text-xl font-semibold tg-primary-text">Всего калорий: {{ totalCaloriesCount }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
 import {formatDate} from "../services/dateHelpers.js";
-import {computeTotalCaloriesCount} from "../services/foodMenu.js";
+import { computed } from 'vue'
 
 const props = defineProps({
     items: Array,
     at: String,
+})
+
+const totalCaloriesCount = computed(() => {
+  const itemsCaloriesCount = props.items.map(item => item.calories_count)
+  return itemsCaloriesCount.reduce((a, b) => a + b, 0)
 })
 </script>
